@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> login out </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://use.fontawesome.com/c768dcde60.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myctrl">
+    <div class="box">
+        <!-- <img src="" class="avatar" alt=""> -->
+        <form name="signupform" novalidate autocomplete="off">
+            <h1 ng-show="showlogin">Log In</h1>
+            <h1 ng-show="showsignup">Sign Up</h1>
+            <div class="textfield">
+                <i class="fa fa-user icon" aria-hidden="true"></i>
+                <input type="text" class="textfield-input" name="username" ng-model="username" required>
+                <label>username</label>
+                <div class="indicator"></div>
+                <div>
+                    <span ng-show="signupform.$submitted || signupform.username.$dirty">
+                        <span class="error" ng-show="signupform.username.$error.required">
+                            <i class="fa fa-user" aria-hidden="true"></i>Username Required</span>
+                    </span>
+                </div>
+                <br>
+            </div>
+            <div class="textfield">
+                <i class="fa fa-key icon" aria-hidden="true"></i>
+                <input type="password" class="textfield-input" name="password" ng-model="password" required>
+                <label>password</label>
+                <div class="indicator"></div>
+                <div>
+                    <span ng-show="signupform.$submitted || signupform.password.$dirty">
+                        <span class="error" ng-show="signupform.password.$error.required">
+                            <i class="fa fa-user" aria-hidden="true"></i>Password Required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="textfield" ng-hide="showlogin">
+                <i class="fa fa-check icon" aria-hidden="true"></i>
+                <input type="password" class="textfield-input" name="cpassword" ng-model="cpassword" required>
+                <label>Confirm Password</label>
+                <div class="indicator"></div>
+                <div>
+                    <span ng-show="signupform.cpassword.$dirty && !(signupform.cpassword.$error.required)">
+                        <span class="error" ng-show="password != cpassword">
+                            <i class="fa fa-user" aria-hidden="true"></i> Confirm Password Required</span>
+                    </span>
+                    <span ng-show="signupform.$submitted || signupform.cpassword.$dirty">
+                        <span class="error" ng-show="signupform.cpassword.$error.required">
+                            <i class="fa fa-user" aria-hidden="true"></i>Confirn Password Required</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div class="logindiv">
+                <button type="submit" name="submit" class="loginbtn" ng-click="login()">
+                    <span class="lspan"></span>
+                    <span class="lspan"></span>
+                    <span class="lspan"></span>
+                    <span class="lspan"></span>
+                    {{btnName}}
+                </button>
+            </div>
+            <p class="account" ng-show="showsignup">Already have an Account <span><a ng-click="loginpage()"> Log
+                        In</a></span></p>
+            <p class="account" ng-show="showlogin">New User ??? <span><a ng-click="signuppage()">Create an Account
+                        ??</a></span></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
